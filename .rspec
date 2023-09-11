@@ -1,3 +1,7 @@
 --require spec_helper
 --require file_io
 --require stat_tracker
+--require game
+--require team
+--require teams_game
+--require file_io

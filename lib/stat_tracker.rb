@@ -1,3 +1,7 @@
+require 'game'
+require 'team'
+require 'teams_game'
+
 class StatTracker
 	attr_reader :games,
 							:teams,
@@ -12,7 +16,7 @@ class StatTracker
 	def self.from_csv(locations)
 	  games = Game.build_games(locations[:games])
 		teams = Team.build_teams(locations[:teams])
-		teams_games = TeamsGames.build_teams_games(locations[:game_teams])
+		teams_games = TeamsGame.build_teams_games(locations[:game_teams])
 	  StatTracker.new(games, teams, teams_games)
 	end
 end
