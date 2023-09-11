@@ -24,7 +24,6 @@ class Game
 		@home_goals = data[:home_goals]
 		@venue = data[:venue]
 		@venue_link = data[:venue_link]
-		#require 'pry'; binding.pry
 	end
 
 	def self.build_games(csvdata)
@@ -34,6 +33,4 @@ class Game
 		end
 		return games
 	end
-
-
 end
