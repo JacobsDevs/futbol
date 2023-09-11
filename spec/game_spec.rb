@@ -27,4 +27,10 @@ RSpec.describe Game do
 			expect(game.venue_link).to eq("/api/v1/venues/null")
 		end
 	end
+
+	describe '#build_games' do
+	  it 'returns an array of Game objects' do
+			expect(Game.build_games('./data/games.csv')[0]).to be_an_instance_of Game
+		end
+	end
 end
