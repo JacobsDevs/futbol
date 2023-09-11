@@ -1,20 +1,18 @@
-require 'csv'
-
 class StatTracker
-	attr_reader :game_data,
-							:team_data,
-							:game_team_data
+	attr_reader :games,
+							:teams,
+							:teams_games
 	
-	def initialize(game_data={}, team_data={}, game_team_data={})
-	  @game_data = game_data
-		@team_data = team_data
-		@game_team_data = game_team_data
+	def initialize(games=[], teams=[], teams_games=[])
+	  @games = games
+		@teams = teams
+		@teams_games = teams_games
 	end
 
 	def self.from_csv(locations)
-	  game_data = CSV.foreach(locations[:games], headers: true, header_converters: :symbol).map(&:to_h)
-		team_data = CSV.foreach(locations[:teams], headers: true, header_converters: :symbol).map(&:to_h)
-		game_team_data = CSV.foreach(locations[:game_teams], headers: true, header_converters: :symbol).map(&:to_h)
-	  StatTracker.new(game_data, team_data, game_team_data)
+	  games = Game.build_games(locations[:games])
+		teams = Team.build_teams(locations[:teams])
+		teams_games = TeamsGames.build_teams_games(locations[:game_teams])
+	  StatTracker.new(games, teams, teams_games)
 	end
 end
