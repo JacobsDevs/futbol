@@ -3,13 +3,13 @@ RSpec.describe Team do
 	  it 'exists and has parameters' do
 		  team_data = {
 				:team_id => "1",
-				:franchise_id => "23",
-				:team_name => "Atlanta United",
+				:franchiseid => "23",
+				:teamname => "Atlanta United",
 				:abbreviation => "ATL",
 				:stadium => "Mercedes-Benz Stadium",
 				:link => "/api/v1/teams/1"
 			}
-			team = Team.new(gamedata)
+			team = Team.new(team_data)
 			expect(team).to be_an_instance_of Team
 			expect(team.team_id).to eq("1")
 			expect(team.franchise_id).to eq("23")

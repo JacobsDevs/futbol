@@ -65,25 +65,25 @@
           null,
           null,
           1,
-          7442,
-          7442,
-          7442,
-          7442,
-          7442,
-          7442,
-          7442,
-          7442,
-          7442,
-          7442,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
           null,
           null,
           null,
           1,
-          1,
-          1,
-          7441,
+          0,
+          0,
+          0,
           null,
-          1,
+          0,
           null,
           null,
           null,
@@ -92,7 +92,36 @@
       },
       "/home/thegypsy/turing/1module/futbol/lib/team.rb": {
         "lines": [
-
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          33,
+          33,
+          33,
+          33,
+          33,
+          33,
+          null,
+          null,
+          1,
+          1,
+          1,
+          32,
+          null,
+          null,
+          1,
+          null,
+          null
         ]
       },
       "/home/thegypsy/turing/1module/futbol/lib/teams_game.rb": {
@@ -100,7 +129,7 @@
 
         ]
       },
-      "/home/thegypsy/turing/1module/futbol/spec/game_spec.rb": {
+      "/home/thegypsy/turing/1module/futbol/spec/team_spec.rb": {
         "lines": [
           1,
           1,
@@ -113,14 +142,6 @@
           null,
           null,
           null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
           1,
           1,
           1,
@@ -141,6 +162,6 @@
         ]
       }
     },
-    "timestamp": 1694410481
+    "timestamp": 1694411295
   }
 }
