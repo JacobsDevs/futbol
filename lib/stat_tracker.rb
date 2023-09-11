@@ -1,6 +1,6 @@
-require 'game'
-require 'team'
-require 'teams_game'
+require './lib/game'
+require './lib/team'
+require './lib/teams_game'
 
 class StatTracker
 	attr_reader :games,

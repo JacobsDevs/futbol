@@ -11,6 +11,20 @@ RSpec.describe StatTracker do
 
 	describe '#self.from_csv' do
 		it 'returns a StatTracker object with CSV data converted into Game, Team & TeamsGame objects' do
+			game_path = './data/games.csv'
+			team_path = './data/teams.csv'
+			game_teams_path = './data/game_teams.csv'
+
+			locations = {
+				games: game_path,
+				teams: team_path,
+				game_teams: game_teams_path
+			}
+
+			stat_tracker = StatTracker.from_csv(locations)
+			expect(stat_tracker.games[0]).to be_an_instance_of Game
+			expect(stat_tracker.teams[0]).to be_an_instance_of Team
+			expect(stat_tracker.teams_games[0]).to be_an_instance_of TeamsGame
 		end
 	end
 
