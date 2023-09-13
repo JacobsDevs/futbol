@@ -460,7 +460,6 @@ game_id,team_id,HoA,result,settled_in,head_coach,goals,shots,tackles,pim,powerPl
 2017030241,28,away,LOSS,REG,Peter DeBoer,0,8,33,31,5,0,47.8,8,6
 2017030241,54,home,WIN,REG,Gerard Gallant,5,8,48,10,10,3,52.2,10,15
 2017030242,28,away,LOSS,OT,Peter DeBoer,2,11,48,12,7,2,55.1,7,12
-2017030242,54,home,WIN,OT,Gerard Gallant,3,7,52,22,2,0,44.9,15,26
 2017030243,54,away,LOSS,OT,Gerard Gallant,2,8,35,8,6,2,42.3,6,4
 2017030243,28,home,WIN,OT,Peter DeBoer,3,10,44,12,4,1,57.7,13,14
 2017030244,54,away,LOSS,REG,Gerard Gallant,0,8,37,22,5,0,44.3,5,5

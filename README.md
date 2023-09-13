@@ -1,3 +1,7 @@
 # Futbol
+A learning project from Turing School Mod 1.
 
-Starter repository for the [Turing School](https://turing.io/) Futbol project.
+---
+
+#### Author: Jacob Phelan
+
