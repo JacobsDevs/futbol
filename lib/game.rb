@@ -1,4 +1,4 @@
-require './lib/file_io'
+require_relative 'file_io'
 
 class Game
 	extend FileIo

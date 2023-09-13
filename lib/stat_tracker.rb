@@ -1,6 +1,6 @@
-require './lib/game'
-require './lib/team'
-require './lib/teams_game'
+require_relative 'game'
+require_relative 'team'
+require_relative 'teams_game'
 
 class StatTracker
 	attr_reader :games,
@@ -32,24 +32,24 @@ class StatTracker
 
 	def percentage_home_wins
 	  wins = @games.count{|game| game.home_goals.to_i > game.away_goals.to_i}.to_f
-		((wins / @games.length.to_f) * 100.0).round(2)
+		((wins / @games.length.to_f)).round(2)
 	end
 
 	def percentage_visitor_wins
 	  wins = @games.count{|game| game.home_goals.to_i < game.away_goals.to_i}.to_f
-		((wins / @games.length.to_f) * 100.0).round(2)
+		((wins / @games.length.to_f)).round(2)
 	end
 
 	def percentage_ties
 	  ties = @games.count{|game| game.home_goals.to_i == game.away_goals.to_i}.to_f
-		((ties / @games.length.to_f) * 100.0).round(2)
+		((ties / @games.length.to_f)).round(2)
 	end
 
 	def count_of_games_by_season
 	  @games.map {|game| game.season}.inject(Hash.new(0)) {|hash, element| hash[element] += 1; hash}
 	end
 	
-	def average_goals_by_game
+	def average_goals_per_game
 	  average_goals = @games.inject(0.0) {|memo, game| memo + game.total_score} / @games.length.to_f
 	  average_goals.round(2)
 	end
@@ -137,14 +137,18 @@ class StatTracker
 		match_ids = games_in_season(season)
 	  coach_stats = coach_wins(season)
 		coach_stats.each do |coach, wins|
-			coach_stats[coach] = (wins / @teams_games.count{|game| game.head_coach == coach && match_ids.include?(game.game_id)} * 100.0).round(2)
+			coach_stats[coach] = (wins / @teams_games.count{|game| game.head_coach == coach && match_ids.include?(game.game_id)}).round(2)
 		end
 	end
 	
 	def coach_wins(season)
 		match_ids = games_in_season(season)
 		coaches = @teams_games.inject(Hash.new(0.0)) do |memo, match|
-			memo[match.head_coach] += 1.0 if match.result == "WIN" && match_ids.include?(match.game_id)
+			if match.result == "WIN" && match_ids.include?(match.game_id)
+				memo[match.head_coach] += 1.0
+			elsif match_ids.include?(match.game_id)
+				memo[match.head_coach] += 0.0 
+			end
 			memo
 		end
 	end

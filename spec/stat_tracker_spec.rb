@@ -63,7 +63,7 @@ RSpec.describe StatTracker do
 				expect(@stat_tracker.count_of_games_by_season['20122013']).to eq(806)
 			end
 			it 'can return a Float #average_goals_per_game' do
-				expect(@stat_tracker.average_goals_by_game).to eq(4.22)
+				expect(@stat_tracker.average_goals_per_game).to eq(4.22)
 			end
 			it 'can return a Hash #average_goals_by_season' do
 				expect(@stat_tracker.average_goals_by_season).to be_an_instance_of Hash
@@ -85,7 +85,7 @@ RSpec.describe StatTracker do
 			it 'can return a String of #highest_scoring_visitor (highest average goals across all seasons away)' do
 			  expect(@stat_tracker.highest_scoring_visitor).to be_an_instance_of String
 				expect(@stat_tracker.highest_scoring_visitor).to eq('FC Dallas')
-			end
+			end	
 			it 'can return a String of #highest_scoring_home_team' do
 			  expect(@stat_tracker.highest_scoring_home_team).to be_an_instance_of String
 				expect(@stat_tracker.highest_scoring_home_team).to eq('Reign FC')
