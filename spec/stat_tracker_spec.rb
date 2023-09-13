@@ -70,5 +70,19 @@ RSpec.describe StatTracker do
 				expect(@stat_tracker.average_goals_by_season['20122013']).to eq(4.12)
 			end
 		end
+		describe 'League Methods' do
+			it 'can return an Integer of #count_of_teams' do
+				expect(@stat_tracker.count_of_teams).to eq(32)
+			end
+			it 'can return a String of #best_offense (highest average goals across all seasons)' do
+			 expect(@stat_tracker.best_offense).to be_an_instance_of String
+			 expect(@stat_tracker.best_offense).to eq('Reign FC')
+			end
+			it 'can return a String of #worst_offense'
+			it 'can return a String of #highest_scoring_visitor (highest average goals across all seasons away)'
+			it 'can return a String of #highest_scoring_home_team'
+			it 'can return a String of #lowest_scoring_visitor'
+			it 'can return a String of #lowest_scoring_home_team'
+		end
 	end
 end

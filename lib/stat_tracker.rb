@@ -21,41 +21,51 @@ class StatTracker
 	end
 
 	def highest_total_score
-	  games.map {|game| game.total_score}.max
+	  @games.map {|game| game.total_score}.max
 	end
 
 	def lowest_total_score
-	  games.map {|game| game.total_score}.min
+	  @games.map {|game| game.total_score}.min
 	end
 
 	def percentage_home_wins
-	  wins = games.count{|game| game.home_goals.to_i > game.away_goals.to_i}.to_f
-		((wins / games.length.to_f) * 100.0).round(2)
+	  wins = @games.count{|game| game.home_goals.to_i > game.away_goals.to_i}.to_f
+		((wins / @games.length.to_f) * 100.0).round(2)
 	end
 
 	def percentage_visitor_wins
-	  wins = games.count{|game| game.home_goals.to_i < game.away_goals.to_i}.to_f
-		((wins / games.length.to_f) * 100.0).round(2)
+	  wins = @games.count{|game| game.home_goals.to_i < game.away_goals.to_i}.to_f
+		((wins / @games.length.to_f) * 100.0).round(2)
 	end
 
 	def percentage_ties
-	  ties = games.count{|game| game.home_goals.to_i == game.away_goals.to_i}.to_f
-		((ties / games.length.to_f) * 100.0).round(2)
+	  ties = @games.count{|game| game.home_goals.to_i == game.away_goals.to_i}.to_f
+		((ties / @games.length.to_f) * 100.0).round(2)
 	end
 
 	def count_of_games_by_season
-	  games.map {|game| game.season}.inject(Hash.new(0)) {|hash, element| hash[element] += 1; hash}
+	  @games.map {|game| game.season}.inject(Hash.new(0)) {|hash, element| hash[element] += 1; hash}
 	end
 	
 	def average_goals_by_game
-	  average_goals = games.inject(0.0) {|memo, game| memo + game.total_score} / games.length.to_f
+	  average_goals = @games.inject(0.0) {|memo, game| memo + game.total_score} / @games.length.to_f
 	  average_goals.round(2)
 	end
 
 	def average_goals_by_season
-		scores = games.inject(Hash.new(0)) {|memo, game| memo[game.season] += game.total_score; memo}
+		scores = @games.inject(Hash.new(0)) {|memo, game| memo[game.season] += game.total_score; memo}
 		games = count_of_games_by_season
 		scores.each {|season, score| scores[season] = (score / games[season]).round(2)}
     scores
+	end
+
+	def count_of_teams
+	  @teams.length
+	end
+
+	def best_offense
+	  scores = @teams_games.inject(Hash.new(0)) {|memo, game| memo[game.team_id] += game.goals.to_f; memo}
+	  scores.each {|id, score| scores[id] = (score / @teams_games.count {|game| game.team_id == id}.to_f).round(2)}
+		teams.select{|team| team.team_id == scores.max_by {|k,v| v}[0]}[0].team_name
 	end
 end
