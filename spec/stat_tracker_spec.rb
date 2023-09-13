@@ -29,7 +29,7 @@ RSpec.describe StatTracker do
 	end
 
 	describe 'Methods' do
-	  before(:all) do
+	  before(:each) do
 		  game_path = './data/games.csv'
 			team_path = './data/teams.csv'
 			game_teams_path = './data/game_teams.csv'
@@ -97,6 +97,29 @@ RSpec.describe StatTracker do
 			it 'can return a String of #lowest_scoring_home_team' do
 				expect(@stat_tracker.lowest_scoring_home_team).to be_an_instance_of String
 				expect(@stat_tracker.lowest_scoring_home_team).to eq('Utah Royals FC')
+			end
+		end
+		describe 'Season Methods' do
+			#These all take a season as an argument.  The season we will use to test is '20122013'
+			it 'can return a String of the #winningest_coach (best win % of season)' do
+			  expect(@stat_tracker.winningest_coach('20122013')).to eq('Dan Lacroix')
+			end
+			it 'can return a String of the #worst_coach' do
+			  expect(@stat_tracker.worst_coach('20122013')).to eq('Jon Cooper')
+			end
+			it 'can return a String of the #most_accurate_team' do
+				expect(@stat_tracker.most_accurate_team('20122013')).to eq('DC United')
+			end
+			it 'can return a String of the #least_accurate_team' do
+				expect(@stat_tracker.least_accurate_team('20122013')).to eq('New York City FC')
+			end
+			it 'can return a String of the #most_tackles' do
+			  expect(@stat_tracker.most_tackles('20122013')).to be_an_instance_of String
+			  expect(@stat_tracker.most_tackles('20122013')).to eq('FC Cincinnati')
+			end
+			it 'can return a String of the #fewest_tackles' do
+			  expect(@stat_tracker.fewest_tackles('20122013')).to be_an_instance_of String
+			  expect(@stat_tracker.fewest_tackles('20122013')).to eq('Atlanta United')
 			end
 		end
 	end
