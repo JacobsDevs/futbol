@@ -29,15 +29,46 @@ RSpec.describe StatTracker do
 	end
 
 	describe 'Methods' do
-	  describe 'Game Methods' do
-		  it 'can return an Int #highest_total_score'
-			it 'can return an Int #lowest_total_score'
-			it 'can return a Float #percentage_home_wins'
-			it 'can return a Float #percentage_visitor_wins'
-			it 'can return a Float #percentage_ties'
-			it 'can return a Hash #count_of_games_by_season'
-			it 'can return a Float #average_goals_per_game'
-			it 'can return a Hash #average_goals_by_season'
+	  before(:all) do
+		  game_path = './data/games.csv'
+			team_path = './data/teams.csv'
+			game_teams_path = './data/game_teams.csv'
+
+			locations = {
+				games: game_path,
+				teams: team_path,
+				game_teams: game_teams_path
+			}
+
+			@stat_tracker = StatTracker.from_csv(locations)
+		end
+		describe 'Game Methods' do
+		  it 'can return an Int #highest_total_score' do
+			  expect(@stat_tracker.highest_total_score).to eq(11)
+			end
+			it 'can return an Int #lowest_total_score' do
+				expect(@stat_tracker.lowest_total_score).to eq(0)
+			end
+			it 'can return a Float #percentage_home_wins' do
+				expect(@stat_tracker.percentage_home_wins).to eq(43.5)
+			end
+			it 'can return a Float #percentage_visitor_wins' do
+				expect(@stat_tracker.percentage_visitor_wins).to eq(36.11)
+			end
+			it 'can return a Float #percentage_ties' do
+			  expect(@stat_tracker.percentage_ties).to eq(20.39)
+			end
+			it 'can return a Hash #count_of_games_by_season' do
+				expect(@stat_tracker.count_of_games_by_season).to be_an_instance_of Hash
+				expect(@stat_tracker.count_of_games_by_season['20122013']).to eq(806)
+			end
+			it 'can return a Float #average_goals_per_game' do
+				expect(@stat_tracker.average_goals_by_game).to eq(4.22)
+			end
+			it 'can return a Hash #average_goals_by_season' do
+				expect(@stat_tracker.average_goals_by_season).to be_an_instance_of Hash
+				expect(@stat_tracker.average_goals_by_season['20122013']).to eq(4.12)
+			end
 		end
 	end
 end

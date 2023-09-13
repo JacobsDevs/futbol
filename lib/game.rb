@@ -33,4 +33,8 @@ class Game
 		end
 		return games
 	end
+
+	def total_score
+		@away_goals.to_f + @home_goals.to_f
+	end
 end
