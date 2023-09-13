@@ -63,9 +63,54 @@ class StatTracker
 	  @teams.length
 	end
 
-	def best_offense
+	def average_goals_by_team
 	  scores = @teams_games.inject(Hash.new(0)) {|memo, game| memo[game.team_id] += game.goals.to_f; memo}
 	  scores.each {|id, score| scores[id] = (score / @teams_games.count {|game| game.team_id == id}.to_f).round(2)}
+		scores
+	end
+
+	def average_goals_by_away_team
+	  scores = @teams_games.inject(Hash.new(0)) {|memo, game| memo[game.team_id] += game.goals.to_f if game.hoa == 'away'; memo}
+	  scores.each {|id, score| scores[id] = (score / @teams_games.count {|game| game.team_id == id}.to_f).round(2)}
+		scores
+	end
+
+	def average_goals_by_home_team
+	  scores = @teams_games.inject(Hash.new(0)) {|memo, game| memo[game.team_id] += game.goals.to_f if game.hoa == 'home'; memo}
+	  scores.each {|id, score| scores[id] = (score / @teams_games.count {|game| game.team_id == id}.to_f).round(2)}
+		scores
+	end
+
+	def select_max(scores)
 		teams.select{|team| team.team_id == scores.max_by {|k,v| v}[0]}[0].team_name
 	end
+
+	def select_min(scores)
+		teams.select{|team| team.team_id == scores.min_by {|k,v| v}[0]}[0].team_name
+	end
+
+	def best_offense
+		select_max(average_goals_by_team)
+	end
+
+	def worst_offense
+	  select_min(average_goals_by_team)
+	end
+
+	def highest_scoring_visitor
+		select_max(average_goals_by_away_team)
+	end
+
+	def highest_scoring_home_team
+	  select_max(average_goals_by_home_team)
+	end
+
+	def lowest_scoring_visitor
+		select_min(average_goals_by_away_team)
+	end
+
+  def lowest_scoring_home_team
+		select_min(average_goals_by_home_team)
+	end
+
 end
